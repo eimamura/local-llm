@@ -1,0 +1,21 @@
+[project]
+name = "local-llm"
+version = "0.1.0"
+description = "LangChain v1 local LLM agent starter notebook"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Local LLM Maintainer" }]
+dependencies = [
+  "langchain>=1.0.0,<2.0.0",
+  "langchain-core>=1.0.0,<2.0.0",
+  "langchain-community>=0.3.0,<1.0.0",
+  "langchain-text-splitters>=1.0.0,<2.0.0",
+  "langchain-ollama>=0.1.0,<2.0.0",
+  "langchainhub>=0.1.20,<0.2.0",
+  "jupyterlab==4.2.3",
+  "ipykernel==6.29.5",
+  "python-dotenv==1.0.1"
+]
+
+[tool.uv]
+dev-dependencies = []

@@ -1,5 +1,5 @@
 - Code targets Python 3.11+, keep type hints where practical (see notebook tools) and favor concise, well-commented cells.
 - Keep configuration in environment variables (`MODEL_NAME`, `OLLAMA_BASE_URL`, `MODEL_TEMPERATURE`) loaded via `python-dotenv`; never commit real secrets.
-- LangChain version must stay on the v1 release line; use `langchain-community` wrappers (e.g., `ChatOllama`) for local models.
+- LangChain dependencies are pinned in `pyproject.toml`; use uv for installs instead of requirements files.
 - Organize experimentation in notebooks under `notebooks/` and keep reusable helpers under `src/` if they grow.
 - Prefer ASCII text and add short explanatory comments only for non-obvious logic (e.g., tool definitions, eval safeguards).

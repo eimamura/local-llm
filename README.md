@@ -6,18 +6,22 @@ This repository bootstraps a hands-on notebook for experimenting with a LangChai
 
 - Python 3.11+ (recommended for LangChain v1)
 - A local LLM runtime (defaults to Ollama listening on `http://localhost:11434`)
-- `make`, `pip`, and `git`
+- [`uv`](https://github.com/astral-sh/uv) and `git`
+
+> **Note:** Dependencies now target the LangChain `1.x` release line (with `langchain-community` tracking the latest stable `0.3+` builds). Run `uv sync` after pulling to make sure your environment picks up the new major version.
 
 ## Quick start
 
 ```bash
 git clone <this-repo>
 cd local-llm
-python -m venv .venv
+curl -LsSf https://astral.sh/uv/install.sh | sh   # skip if uv is already installed
+uv venv                                          # creates .venv locally
 source .venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
+uv sync                                          # installs deps from pyproject.toml
 ```
+
+If you prefer not to activate the environment manually, you can run commands with `uv run <cmd>` (for example, `uv run jupyter lab ...`).
 
 ### Configure your local model
 
@@ -31,17 +35,19 @@ pip install -r requirements.txt
    MODEL_NAME=llama3
    OLLAMA_BASE_URL=http://localhost:11434
    ```
+   The notebook now relies on the standalone `langchain-ollama` integration, so as long as your Ollama server is reachable over HTTP the agent can connect without any extra glue code.
+3. Confirm your runtime/model advertises tool-calling support. Ollama images that expose OpenAI-style function calling (e.g., `llama3.1`, `llama3.1:8b`, Mistral-function variants, etc.) work best. Override `SYSTEM_PROMPT` in `.env` if you want to tweak the agent instructions globally.
 
 ### Launch the notebook
 
 ```bash
-jupyter lab notebooks/local_llm_agent.ipynb
+uv run jupyter lab notebooks/local_llm_agent.ipynb
 ```
 
 The notebook walks through:
 1. Ensuring dependencies are installed.
 2. Loading environment variables (via `python-dotenv`).
-3. Building a LangChain v1 ReAct-style agent around `ChatOllama`.
+3. Building a LangChain 1.x tool-calling agent graph via `create_agent` (requires tool-enabled models).
 4. Attaching a sample local tool (system info & math scratchpad) to showcase function-calling.
 
 ## Git workflow
@@ -58,7 +64,7 @@ git commit -m "feat: bootstrap local llm agent notebook"
 
 - **Model not found**: double-check `MODEL_NAME` matches what your runtime exposes.
 - **Connection refused**: ensure your local server is running and `OLLAMA_BASE_URL` points to it.
-- **LangChain compatibility**: stick to the pinned LangChain v1 packages in `requirements.txt`.
+- **LangChain compatibility**: stick to the pinned LangChain packages declared in `pyproject.toml`, and use a model/runtime that advertises tool-call support—`llama3` base images will throw `does not support tools`, so switch to something like `llama3.1` or another tool-aware build.
 
 ## Next steps
 

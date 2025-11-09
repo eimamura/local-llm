@@ -1,5 +1,5 @@
-- `python -m venv .venv && source .venv/bin/activate` – create/activate the virtual environment.
-- `pip install -r requirements.txt` – install LangChain v1 + notebook dependencies.
+- `uv venv && source .venv/bin/activate` – create/activate the virtual environment managed by uv.
+- `uv sync` – install LangChain v1 + notebook dependencies from `pyproject.toml`.
 - `ollama serve` (after `ollama pull <model>`) – start the local LLM runtime expected by the notebook.
-- `jupyter lab notebooks/local_llm_agent.ipynb` – open the agent walkthrough notebook.
+- `uv run jupyter lab notebooks/local_llm_agent.ipynb` – open the agent walkthrough notebook inside the managed env.
 - `git status -sb` – review pending changes before committing.
