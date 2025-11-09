@@ -1,0 +1,4 @@
+- Ensure README and notebook stay in sync regarding environment variables and commands.
+- Validate the notebook imports by running the first few cells (after installing requirements) to catch API drift.
+- Confirm the local LLM endpoint (Ollama URL/model) is documented and defaults are safe.
+- Run `git status -sb` before handing off work and mention any untracked/modified files.

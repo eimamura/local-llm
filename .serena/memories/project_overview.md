@@ -1,0 +1,3 @@
+- Purpose: bootstrap a minimal LangChain v1 agent wired to a local LLM runtime (default Ollama) that can be explored through the `notebooks/local_llm_agent.ipynb` notebook.
+- Tech stack: Python 3.11, Jupyter, LangChain v1 packages (`langchain`, `langchain-core`, `langchain-community`, `langchain-text-splitters`), python-dotenv, optional Ollama local server.
+- Structure: `README.md` with setup instructions, `requirements.txt`, `.env.example`, `.gitignore`, `.serena/project.yml`, placeholder `src/__init__.py`, and the notebook under `notebooks/` demonstrating a simple ReAct agent with system/math tools.

@@ -1,0 +1,5 @@
+project_name: local-llm
+language: python
+source_directories:
+  - src
+  - notebooks
